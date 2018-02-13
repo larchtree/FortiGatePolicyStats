@@ -8,8 +8,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 #Build a list of Fortigates credentials to log into
-Fortigate_1 = { "ip" : '192.168.1.1', "port": '443', "user": 'fgt_api', "pass" : '1234', 'vdom': 'root' }
-Fortigate_2 = { "ip" : '192.168.1.2', "port": '443', "user": 'fgt_api', "pass" : '1234', 'vdom': 'root' }
+Fortigate_1 = { "ip" : '10.0.0.1', "port": '443', "user": 'read_only', "pass" : '1234', 'vdom': 'root' }
+Fortigate_2 = { "ip" : '10.0.0.2', "port": '443', "user": 'read_only', "pass" : '1234', 'vdom': 'root' }
  
 FortiGates = [ Fortigate_1, Fortigate_2 ]
 
