@@ -76,7 +76,7 @@
       <chart>
         <title>Mbps</title>
         <search>
-          <query>index=fgt_policy | spath "results.$field_policy$.bytes" |spath "serial" | search "results.$field_policy$.bytes"="*" serial="$field_serial$" | rename "results.$field_policy$.bytes" as bytes | streamstats sum(bytes) AS total window=2 | eval Mbps=(total-bytes*2)/(1024*1024*8) | where Mbps&gt;0 | timechart avg(Mbps) max(Mbps)</query>
+          <query>index=fgt_policy | spath "results.$field_policy$.bytes" |spath "serial" | search "results.$field_policy$.bytes"="*" serial="$field_serial$" | rename "results.$field_policy$.bytes" as bytes | streamstats sum(bytes) AS total window=2 | eval Mbps=(total-bytes*2)/(1024*1024*8) | where Mbps&gt;=0 | timechart avg(Mbps) max(Mbps)</query>
           <earliest>$field_time.earliest$</earliest>
           <latest>$field_time.latest$</latest>
         </search>
@@ -109,7 +109,7 @@
       <chart>
         <title>Packets</title>
         <search>
-          <query>index=fgt_policy | spath "results.$field_policy$.packets"| spath "serial" | search "results.$field_policy$.packets"="*"  serial="$field_serial$" | rename "results.$field_policy$.packets" as packets | streamstats first(packets) as last_packet window=2 | eval "packet rate"=last_packet-packets | search "packet rate"&gt;0 | timechart sum("packet rate")</query>
+          <query>index=fgt_policy | spath "results.$field_policy$.packets"| spath "serial" | search "results.$field_policy$.packets"="*"  serial="$field_serial$" | rename "results.$field_policy$.packets" as packets | streamstats first(packets) as last_packet window=2 | eval "packet rate"=last_packet-packets | search "packet rate"&gt;=0 | timechart sum("packet rate")</query>
           <earliest>$field_time.earliest$</earliest>
           <latest>$field_time.latest$</latest>
         </search>
@@ -173,7 +173,7 @@
       <chart>
         <title>nturbo_bytes</title>
         <search>
-          <query>index=fgt_policy | spath "results.$field_policy$.nturbo_bytes" | spath "serial" | search "results.$field_policy$.nturbo_bytes"="*" serial="$field_serial$" | rename "results.$field_policy$.nturbo_bytes" as bytes | streamstats sum(bytes) AS total window=2 | eval Mbps=(total-bytes*2)/(1024*1024*8) | where Mbps&gt;0 | timechart avg(Mbps) max(Mbps)</query>
+          <query>index=fgt_policy | spath "results.$field_policy$.nturbo_bytes" | spath "serial" | search "results.$field_policy$.nturbo_bytes"="*" serial="$field_serial$" | rename "results.$field_policy$.nturbo_bytes" as bytes | streamstats sum(bytes) AS total window=2 | eval Mbps=(total-bytes*2)/(1024*1024*8) | where Mbps&gt;=0 | timechart avg(Mbps) max(Mbps)</query>
           <earliest>$field_time.earliest$</earliest>
           <latest>$field_time.latest$</latest>
         </search>
@@ -204,7 +204,7 @@
       <chart>
         <title>nturbo_packets</title>
         <search>
-          <query>index=fgt_policy | spath "results.$field_policy$.nturbo_packets" | spath "serial" | search "results.$field_policy$.nturbo_packets"="*" serial="$field_serial$" | rename "results.$field_policy$.nturbo_packets" as packets | streamstats first(packets) as last_packet window=2 | eval "packet rate"=last_packet-packets | search "packet rate"&gt;0 | timechart sum("packet rate")</query>
+          <query>index=fgt_policy | spath "results.$field_policy$.nturbo_packets" | spath "serial" | search "results.$field_policy$.nturbo_packets"="*" serial="$field_serial$" | rename "results.$field_policy$.nturbo_packets" as packets | streamstats first(packets) as last_packet window=2 | eval "packet rate"=last_packet-packets | search "packet rate"&gt;=0 | timechart sum("packet rate")</query>
           <earliest>$field_time.earliest$</earliest>
           <latest>$field_time.latest$</latest>
         </search>
@@ -237,7 +237,7 @@
       <chart>
         <title>software_bytes</title>
         <search>
-          <query>index=fgt_policy | spath "results.$field_policy$.software_bytes" | spath "serial" | search "results.$field_policy$.software_bytes"="*" serial="$field_serial$" | rename "results.$field_policy$.software_bytes" as bytes | streamstats sum(bytes) AS total window=2 | eval Mbps=(total-bytes*2)/(1024*1024*8) | where Mbps&gt;0 | timechart avg(Mbps) max(Mbps)</query>
+          <query>index=fgt_policy | spath "results.$field_policy$.software_bytes" | spath "serial" | search "results.$field_policy$.software_bytes"="*" serial="$field_serial$" | rename "results.$field_policy$.software_bytes" as bytes | streamstats sum(bytes) AS total window=2 | eval Mbps=(total-bytes*2)/(1024*1024*8) | where Mbps&gt;=0 | timechart avg(Mbps) max(Mbps)</query>
           <earliest>$field_time.earliest$</earliest>
           <latest>$field_time.latest$</latest>
         </search>
@@ -268,7 +268,7 @@
       <chart>
         <title>software_packets</title>
         <search>
-          <query>index=fgt_policy | spath "results.$field_policy$.software_packets" | spath "serial"| search "results.$field_policy$.software_packets"="*" serial="$field_serial$" | rename "results.$field_policy$.software_packets" as packets | streamstats first(packets) as last_packet window=2 | eval "packet rate"=last_packet-packets | search "packet rate"&gt;0 | timechart sum("packet rate")</query>
+          <query>index=fgt_policy | spath "results.$field_policy$.software_packets" | spath "serial"| search "results.$field_policy$.software_packets"="*" serial="$field_serial$" | rename "results.$field_policy$.software_packets" as packets | streamstats first(packets) as last_packet window=2 | eval "packet rate"=last_packet-packets | search "packet rate"&gt;=0 | timechart sum("packet rate")</query>
           <earliest>$field_time.earliest$</earliest>
           <latest>$field_time.latest$</latest>
         </search>
@@ -301,7 +301,7 @@
       <chart>
         <title>asic_bytes</title>
         <search>
-          <query>index=fgt_policy | spath "results.$field_policy$.asic_bytes" | spath "serial"| search "results.$field_policy$.asic_bytes"="*" serial="$field_serial$" | rename "results.$field_policy$.asic_bytes" as bytes | streamstats sum(bytes) AS total window=2 | eval Mbps=(total-bytes*2)/(1024*1024*8) | where Mbps&gt;0 | timechart avg(Mbps) max(Mbps)</query>
+          <query>index=fgt_policy | spath "results.$field_policy$.asic_bytes" | spath "serial"| search "results.$field_policy$.asic_bytes"="*" serial="$field_serial$" | rename "results.$field_policy$.asic_bytes" as bytes | streamstats sum(bytes) AS total window=2 | eval Mbps=(total-bytes*2)/(1024*1024*8) | where Mbps&gt;=0 | timechart avg(Mbps) max(Mbps)</query>
           <earliest>$field_time.earliest$</earliest>
           <latest>$field_time.latest$</latest>
         </search>
@@ -332,7 +332,7 @@
       <chart>
         <title>asic_packets</title>
         <search>
-          <query>index=fgt_policy | spath "results.$field_policy$.asic_packets" | spath "serial" | search "results.$field_policy$.asic_packets"="*" serial="$field_serial$" | rename "results.$field_policy$.asic_packets" as packets | streamstats first(packets) as last_packet window=2 | eval "packet rate"=last_packet-packets | search "packet rate"&gt;0 | timechart sum("packet rate")</query>
+          <query>index=fgt_policy | spath "results.$field_policy$.asic_packets" | spath "serial" | search "results.$field_policy$.asic_packets"="*" serial="$field_serial$" | rename "results.$field_policy$.asic_packets" as packets | streamstats first(packets) as last_packet window=2 | eval "packet rate"=last_packet-packets | search "packet rate"&gt;=0 | timechart sum("packet rate")</query>
           <earliest>$field_time.earliest$</earliest>
           <latest>$field_time.latest$</latest>
         </search>
