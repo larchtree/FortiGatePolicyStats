@@ -20,8 +20,8 @@ FortiGates = [ Fortigate_1, Fortigate_2 ]
 Splunk_IP = '10.0.0.3'
 
 #Create TCP data inputs in Splunk of Sourcetype "_json"
-Splunk_interface = '2500' #goes to index "fgt_interface" on Splunk
-Splunk_policy    = '2501' #goes to index "fgt_policy" on Splunk
+Splunk_interface = 2500 #goes to index "fgt_interface" on Splunk
+Splunk_policy    = 2501 #goes to index "fgt_policy" on Splunk
 
 
 #log in and get auth cookies
