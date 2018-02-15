@@ -45,7 +45,7 @@ def GetInterfaceList(FortiGate):
 
   InterfaceList = { "_time" : str(datetime.datetime.now()) }
   for VDOM in content_json:
-    InterfaceList['serial'] = VDOM['serial']
+    InterfaceList['Serial'] = VDOM['serial']
     for item in VDOM['results']:
       if "status" in item.keys():
         if item["status"] == "up" and item["name"] != "ssl.root":
@@ -107,7 +107,7 @@ def SubmitInterfaceStats(FortiGate):
   InterfaceList = GetInterfaceList(FortiGate)
   InterfaceList["list"] = []
 
-  Ignored = ["list", "_time", "serial"]
+  Ignored = ["list", "_time", "Serial"]
   for item in InterfaceList.keys():
     if item not in Ignored:
       last_rx, last_tx = GetInterfaceHistory(FortiGate, item)
@@ -125,7 +125,7 @@ def SubmitPolicyStats(FortiGate):
   # split up messages into smaller chunks of data
   SplunkSize = 20
 
-  TrafficSplunk = {"_time" : TrafficStats["_time"], "serial" : TrafficStats["serial"], "results": {} }
+  TrafficSplunk = {"_time" : TrafficStats["_time"], "Serial" : TrafficStats["serial"], "results": {} }
 
   count = 0
   for item in TrafficStats["results"].keys():
@@ -139,7 +139,7 @@ def SubmitPolicyStats(FortiGate):
 
       #reset variable for next pass
       count = 0
-      TrafficSplunk = {"_time" : TrafficStats["_time"], "serial" : TrafficStats["serial"], "results": {} }
+      TrafficSplunk = {"_time" : TrafficStats["_time"], "Serial" : TrafficStats["serial"], "results": {} }
   
   #send last message to splunk
   TrafficSplunk["list"] = TrafficSplunk["results"].keys()
